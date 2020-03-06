@@ -1,28 +1,16 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
-import './user.scss'
+import Taro from '@tarojs/taro'
+import { View, WebView  } from '@tarojs/components'
 
-export default class User extends Component {
-
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  config = {
-    navigationBarTitleText: '首页'
+export default function User ()  {
+  const handleMessage = e => {
+    console.log(e)
   }
-
-  render () {
-    return (
-      <View className='user'>
-        <Text>Hello world!</Text>
-      </View>
-    )
-  }
+  return (
+    <View className='user'>
+      <WebView src='https://mp.weixin.qq.com/' onMessage={handleMessage} />
+    </View>
+  )
+}
+User.config = {
+  navigationBarTitleText: '个人中心'
 }

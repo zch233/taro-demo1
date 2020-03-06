@@ -21,14 +21,15 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/user/user',
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
+      navigationBarTitleText: '游全球',
       navigationBarTextStyle: 'black'
-    }
+    },
   }
 
   // 在 App 类中的 render() 函数没有实际作用

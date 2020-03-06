@@ -7,11 +7,14 @@ export default function Index () {
 
   const getPhoneNumber = (e) => {
     console.log(e.detail)
-    Taro.showToast({
-      title: '领取成功',
-      icon: 'success',
-      duration: 2000
-    })
+    if (e.detail.errMsg === 'getPhoneNumber:ok') {
+      Taro.showToast({ title: '领取成功', icon: 'success', duration: 2000, success () {
+        Taro.navigateTo({ url: '/pages/user/user' })
+      } })
+    } else {
+      Taro.showToast({ title: '授权失败', icon: 'none', duration: 2000 })
+      return
+    }
   }
 
   useEffect(() => {
@@ -38,5 +41,5 @@ export default function Index () {
 }
 
 Index.config = {
-  navigationBarTitleText: '首页'
+  navigationBarTitleText: '游全球会员活动'
 }

@@ -1,8 +1,8 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "myapp",
-  "description": "",
-  "appid": "wx485a83879216654a",
+  "projectname": "myApp",
+  "description": "游全球",
+  "appid": "wx7ea0d9f2e9925009",
   "setting": {
     "urlCheck": true,
     "es6": false,

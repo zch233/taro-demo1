@@ -1,11 +1,17 @@
 import Taro, { useEffect } from '@tarojs/taro'
-import { View, Button } from '@tarojs/components'
+import { View, Button, Image } from '@tarojs/components'
+import logo from '../../static/logo.png'
 import './index.scss'
 
 export default function Index () {
 
   const getPhoneNumber = (e) => {
-    console.log(e)
+    console.log(e.detail)
+    Taro.showToast({
+      title: '领取成功',
+      icon: 'success',
+      duration: 2000
+    })
   }
 
   useEffect(() => {
@@ -22,8 +28,11 @@ export default function Index () {
   }, [])
 
   return (
-    <View className='index'>11
-      <Button size='mini' open-type='getPhoneNumber' bindgetphonenumber={getPhoneNumber}>按钮</Button>
+    <View className='index'>
+      <Image style='width: 36%;' src={logo} mode='widthFix'></Image>
+      <View className='index-title'>会员领卡</View>
+      <View className='index-tips'>领取会员卡可成为游全球会员，享受积分消费，兑换优惠券</View>
+      <Button className='index-button' openType='getPhoneNumber' onGetPhoneNumber={getPhoneNumber}>微信手机号快速申请</Button>
     </View>
   )
 }

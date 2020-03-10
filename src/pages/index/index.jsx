@@ -1,5 +1,5 @@
 import Taro, { useEffect } from '@tarojs/taro'
-import { View, Button, Image } from '@tarojs/components'
+import { View, Button, Image, OfficialAccount } from '@tarojs/components'
 import logo from '../../static/logo.png'
 import './index.scss'
 
@@ -15,6 +15,9 @@ export default function Index () {
       Taro.showToast({ title: '授权失败', icon: 'none', duration: 2000 })
       return
     }
+  }
+  const onLoadHandler = e => {
+    console.log(e)
   }
 
   useEffect(() => {
@@ -32,6 +35,7 @@ export default function Index () {
 
   return (
     <View className='index'>
+      <OfficialAccount onLoad={onLoadHandler} onError={onLoadHandler} />
       <Image style='width: 36%;' src={logo} mode='widthFix'></Image>
       <View className='index-title'>会员领卡</View>
       <View className='index-tips'>领取会员卡可成为游全球会员，享受积分消费，兑换优惠券</View>

@@ -7,7 +7,7 @@ export default function User ()  {
   }
   return (
     <View className='user'>
-      <WebView src='https://mp.weixin.qq.com/' onMessage={handleMessage} />
+      <WebView src='https://shopping.kqlink.com/qrtest/qr.html' onMessage={handleMessage} />
     </View>
   )
 }

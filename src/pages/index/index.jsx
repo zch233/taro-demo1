@@ -1,4 +1,4 @@
-import Taro, { useEffect } from '@tarojs/taro'
+import Taro, { useEffect, useShareAppMessage } from '@tarojs/taro'
 import { View, Button, Image, OfficialAccount } from '@tarojs/components'
 import logo from '../../static/logo.png'
 import './index.scss'
@@ -19,6 +19,16 @@ export default function Index () {
   const onLoadHandler = e => {
     console.log(e)
   }
+  useShareAppMessage(res => {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '游全球',
+      path: 'pages/user/user'
+    }
+  })
 
   useEffect(() => {
     Taro.login({

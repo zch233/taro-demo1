@@ -11,7 +11,7 @@ export default function Index () {
     console.log(e.detail)
     if (e.detail.errMsg === 'getPhoneNumber:ok') {
       Taro.showToast({ title: '领取成功', icon: 'success', duration: 2000, success () {
-        Taro.navigateTo({ url: '/pages/user/user' })
+        Taro.navigateTo({ url: '/pages/user/user?id=1' })
       } })
     } else {
       Taro.showToast({ title: '授权失败', icon: 'none', duration: 2000 })
@@ -63,5 +63,5 @@ export default function Index () {
 }
 
 Index.config = {
-  navigationBarTitleText: '游全球会员活动'
+  navigationBarTitleText: '游全球会员活动',
 }

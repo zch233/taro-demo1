@@ -15,7 +15,7 @@ export default function Index () {
         icon: 'success',
         duration: 2000,
         success () {
-          Taro.navigateTo({ url: '/pages/user/user?id=1' })
+          Taro.navigateTo({ url: '/pages/share/share' })
         }
       })
     } else {
@@ -33,7 +33,7 @@ export default function Index () {
     }
     return {
       title: '游全球',
-      path: 'pages/user/user',
+      path: 'pages/share/share',
       imageUrl: qrcode
     }
   })
@@ -50,6 +50,7 @@ export default function Index () {
           }
         } else {
           console.log('登录失败！' + res.errMsg)
+          Taro.navigateTo({ url: '/pages/share/share' })
         }
       }
     })

@@ -45,12 +45,12 @@ export default function Index () {
           const { result } = await api.login(res.code)
           if (result) {
             Taro.showToast({ title: '你是会员', icon: 'none', duration: 2000 })
+            Taro.navigateTo({ url: '/pages/share/share' })
           } else {
             Taro.showToast({ title: '获得申请资格', icon: 'none', duration: 2000 })
           }
         } else {
           console.log('登录失败！' + res.errMsg)
-          Taro.navigateTo({ url: '/pages/share/share' })
         }
       }
     })

@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 
-const baseURL = process.env.NODE_ENV === 'development' ? 'https://dev.kqlink.com' : ''
+const baseURL = process.env.NODE_ENV === 'development' ? 'https://dev.kqlink.com' : 'https://dev.kqlink.com'
 
 export default function (url, data, method='POST') {
   return new Promise(resolve => {

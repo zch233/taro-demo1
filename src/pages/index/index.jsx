@@ -3,16 +3,24 @@ import { View, Button, Image, OfficialAccount } from '@tarojs/components'
 import logo from '../../static/logo.png'
 import qrcode from '../../static/qrcode.jpg'
 import './index.scss'
-import request from '../../utils/request.js'
+import * as api from './api.js'
 
 export default function Index () {
-
   const getPhoneNumber = (e) => {
-    console.log(e.detail)
-    if (e.detail.errMsg === 'getPhoneNumber:ok') {
-      Taro.showToast({ title: '领取成功', icon: 'success', duration: 2000, success () {
-        Taro.navigateTo({ url: '/pages/user/user?id=1' })
-      } })
+    const phoneData = e.detail
+    if (phoneData.errMsg === 'getPhoneNumber:ok') {
+      api.createMember({ encryptedData: phoneData.encryptedData, ivStr: phoneData.iv }).then(() => {
+        Taro.showToast({
+          title: '领取成功',
+          icon: 'success',
+          duration: 2000,
+          success () {
+            Taro.navigateTo({ url: '/pages/user/user?id=1' })
+          }
+        })
+      }).catch(err => {
+        Taro.showToast({ title: err, icon: 'none', duration: 2000 })
+      })
     } else {
       Taro.showToast({ title: '授权失败', icon: 'none', duration: 2000 })
       return
@@ -20,11 +28,6 @@ export default function Index () {
   }
   const onLoadHandler = e => {
     console.log(e)
-  }
-  const createMember = async jscode => {
-    request('/wx/member/create', { jscode }).then((data) => {
-      console.log(data, 1)
-    })
   }
   useShareAppMessage(res => {
     if (res.from === 'button') {
@@ -42,8 +45,13 @@ export default function Index () {
     Taro.login({
       success: function (res) {
         if (res.code) {
-          console.log(res)
-          createMember(res.code)
+          api.login(res.code).then(data => {
+            if (data.result) {
+              Taro.showToast({ title: '你是会员', icon: 'none', duration: 2000 })
+            } else {
+              Taro.showToast({ title: '获得申请资格', icon: 'none', duration: 2000 })
+            }
+          })
         } else {
           console.log('登录失败！' + res.errMsg)
         }

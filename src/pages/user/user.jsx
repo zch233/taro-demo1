@@ -7,7 +7,7 @@ export default function User ()  {
   }
   const router = useRouter()
   console.log(router)
- 
+
   return (
     <View className='user'>
       <WebView src='https://shopping.kqlink.com/qrtest/qr.html' onMessage={handleMessage} />

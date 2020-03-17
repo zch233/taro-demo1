@@ -6,20 +6,17 @@ import './index.scss'
 import * as api from './api.js'
 
 export default function Index () {
-  const getPhoneNumber = (e) => {
+  const getPhoneNumber = async (e) => {
     const phoneData = e.detail
     if (phoneData.errMsg === 'getPhoneNumber:ok') {
-      api.createMember({ encryptedData: phoneData.encryptedData, ivStr: phoneData.iv }).then(() => {
-        Taro.showToast({
-          title: '领取成功',
-          icon: 'success',
-          duration: 2000,
-          success () {
-            Taro.navigateTo({ url: '/pages/user/user?id=1' })
-          }
-        })
-      }).catch(err => {
-        Taro.showToast({ title: err, icon: 'none', duration: 2000 })
+      await api.createMember({ encryptedData: phoneData.encryptedData, ivStr: phoneData.iv })
+      Taro.showToast({
+        title: '领取成功',
+        icon: 'success',
+        duration: 2000,
+        success () {
+          Taro.navigateTo({ url: '/pages/user/user?id=1' })
+        }
       })
     } else {
       Taro.showToast({ title: '授权失败', icon: 'none', duration: 2000 })
@@ -43,15 +40,14 @@ export default function Index () {
 
   useEffect(() => {
     Taro.login({
-      success: function (res) {
+      success: async function (res) {
         if (res.code) {
-          api.login(res.code).then(data => {
-            if (data.result) {
-              Taro.showToast({ title: '你是会员', icon: 'none', duration: 2000 })
-            } else {
-              Taro.showToast({ title: '获得申请资格', icon: 'none', duration: 2000 })
-            }
-          })
+          const { result } = await api.login(res.code)
+          if (result) {
+            Taro.showToast({ title: '你是会员', icon: 'none', duration: 2000 })
+          } else {
+            Taro.showToast({ title: '获得申请资格', icon: 'none', duration: 2000 })
+          }
         } else {
           console.log('登录失败！' + res.errMsg)
         }

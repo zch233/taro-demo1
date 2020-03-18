@@ -1,8 +1,6 @@
 import Taro from '@tarojs/taro'
 
-// const baseURL = process.env.NODE_ENV === 'development' ? 'https://dev.kqlink.com' : 'https://shopping.kqlink.com/global-charge-wechat-api'
-// const baseURL = 'https://dev.kqlink.com'
-const baseURL = 'https://shopping.kqlink.com/global-charge-wechat-api'
+const baseURL = process.env.NODE_ENV === 'development' ? 'https://dev.kqlink.com' : 'https://shopping.kqlink.com/global-charge-wechat-api'
 
 export default function (url, data, method='POST') {
   return new Promise(resolve => {

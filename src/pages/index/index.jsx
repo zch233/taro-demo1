@@ -11,7 +11,7 @@ export default function Share ()  {
         if (res.code) {
           const { result } = await api.login(res.code)
           if (!result) {
-            Taro.redirectTo({ url: '/pages/share/share' })
+            Taro.redirectTo({ url: '/pages/vip/vip' })
           }
         } else {
           console.log('登录失败！' + res.errMsg)
@@ -21,7 +21,7 @@ export default function Share ()  {
   }, [])
 
   return (
-    <View className='share'>
+    <View>
       <WebView src={`https://shopping.kqlink.com/global-charge-wechat/user/share-poster?userkey=${SHA1(JWT.decode(Taro.getStorageSync('token')).openId)}`} />
     </View>
   )

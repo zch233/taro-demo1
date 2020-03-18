@@ -33,7 +33,7 @@ export default function Index () {
     }
     return {
       title: '游全球',
-      path: 'pages/share/share',
+      path: 'pages/index/index',
       imageUrl: qrcode
     }
   })
@@ -44,7 +44,7 @@ export default function Index () {
       <View className='index-title'>会员领卡</View>
       <View className='index-tips'>领取会员卡可成为游全球会员，享受积分消费，兑换优惠券</View>
       <Button className='index-button' openType='getPhoneNumber' onGetPhoneNumber={getPhoneNumber}>微信手机号快速申请</Button>
-      <OfficialAccount onLoad={onLoadHandler} onError={onLoadHandler} />
+      <View style='margin-top: 3vh;'><OfficialAccount onLoad={onLoadHandler} onError={onLoadHandler} /></View>
     </View>
   )
 }

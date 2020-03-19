@@ -1,9 +1,11 @@
 import Taro from '@tarojs/taro'
 
 const baseURL = process.env.NODE_ENV === 'development' ? 'https://dev.kqlink.com' : 'https://shopping.kqlink.com/global-charge-wechat-api'
+// const baseURL = 'https://shopping.kqlink.com/global-charge-wechat-api'
 
 export default function (url, data, method='POST') {
   return new Promise(resolve => {
+    Taro.showLoading({ title: '加载中', mask: true })
     Taro.request({
       url: baseURL + url,
       data: {
@@ -32,6 +34,9 @@ export default function (url, data, method='POST') {
       fail: function (err) {
         console.log(err, '请求失败')
         throw Error(err)
+      },
+      complete: function () {
+        Taro.hideLoading()
       }
     })
   })

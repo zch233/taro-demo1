@@ -1,7 +1,6 @@
-import Taro, { useShareAppMessage } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Button, Image, OfficialAccount } from '@tarojs/components'
 import logo from '../../static/logo.png'
-import qrcode from '../../static/qrcode.jpg'
 import './vip.scss'
 import * as api from './api.js'
 
@@ -15,7 +14,7 @@ export default function Index () {
         icon: 'success',
         duration: 2000,
         success () {
-          Taro.redirectTo({ url: '/pages/share/share' })
+          Taro.redirectTo({ url: '/pages/index/index' })
         }
       })
     } else {
@@ -26,17 +25,6 @@ export default function Index () {
   const onLoadHandler = e => {
     console.log(e)
   }
-  useShareAppMessage(res => {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-    return {
-      title: '游全球',
-      path: 'pages/index/index',
-      imageUrl: qrcode
-    }
-  })
 
   return (
     <View className='index'>

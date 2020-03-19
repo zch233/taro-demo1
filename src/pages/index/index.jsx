@@ -1,12 +1,13 @@
-import Taro, { useEffect } from '@tarojs/taro'
+import Taro, { useEffect, useRouter } from '@tarojs/taro'
 import { View, WebView  } from '@tarojs/components'
 import JWT from 'jsonwebtoken'
 import SHA1 from 'sha1'
 import * as api from './api.js'
 
 export default function Share ()  {
+  const router = useRouter()
   useEffect(() => {
-    Taro.login({
+    !router.params.get && Taro.login({
       success: async function (res) {
         if (res.code) {
           const { result } = await api.login(res.code)

@@ -12,10 +12,9 @@ export default function Index () {
       Taro.showToast({
         title: '领取成功',
         icon: 'success',
-        duration: 2000,
-        success () {
-          Taro.redirectTo({ url: '/pages/index/index' })
-        }
+        duration: 1500
+      }).then(() => {
+        Taro.redirectTo({ url: '/pages/index/index?get=1' })
       })
     } else {
       Taro.showToast({ title: '授权失败', icon: 'none', duration: 2000 })

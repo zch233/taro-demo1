@@ -28,5 +28,5 @@ export default function Share ()  {
   )
 }
 Share.config = {
-  navigationBarTitleText: '专属二维码'
+  navigationBarTitleText: '专属二维码',
 }

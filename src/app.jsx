@@ -23,6 +23,7 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/vip/vip',
+      'pages/frame/frame',
     ],
     window: {
       backgroundTextStyle: 'light',

@@ -28,6 +28,20 @@ export default function (url, data, method='POST') {
       success: function (res) {
         const result = res.data
         if (result.code !== '00') {
+          if (result.code === 'WX0005') {
+            Taro.showModal({
+              title: '提示',
+              content: '检测到您未关注，是否进入游客模式？',
+            })
+            .then(res1 => {
+              if (res1.confirm) {
+                Taro.reLaunch({ url: '/pages/index/index?get=1' })
+              } else if (res1.cancel) {
+                Taro.reLaunch({ url: `/pages/frame/frame?href=${error[result.code].href}` })
+              }
+            })
+            return
+          }
           if (error[result.code]) {
             Taro.showToast({ title: error[result.code].message, icon: 'none', duration: 2000 }).then(() => {
               Taro.reLaunch({ url: `/pages/frame/frame?href=${error[result.code].href}` })

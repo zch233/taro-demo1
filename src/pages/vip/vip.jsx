@@ -7,6 +7,7 @@ import * as api from './api.js'
 export default function Index () {
   const getPhoneNumber = async (e) => {
     const phoneData = e.detail
+    console.log(phoneData.errMsg)
     if (phoneData.errMsg === 'getPhoneNumber:ok') {
       await api.createMember({ encryptedData: phoneData.encryptedData, ivStr: phoneData.iv })
       Taro.showToast({
@@ -17,8 +18,14 @@ export default function Index () {
         Taro.redirectTo({ url: '/pages/index/index?get=1' })
       })
     } else {
-      Taro.showToast({ title: '授权失败', icon: 'none', duration: 2000 })
-      return
+      if (phoneData.errMsg !== 'getPhoneNumber:fail user deny') {
+        Taro.showModal({
+          title: '领取失败',
+          content: '详情可咨询客服',
+          showCancel: false,
+        })
+        return
+      }
     }
   }
   const onLoadHandler = e => {

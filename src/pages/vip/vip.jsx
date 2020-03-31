@@ -28,6 +28,16 @@ export default function Index () {
       }
     }
   }
+  const getCard = async () => {
+    await api.createMember()
+      Taro.showToast({
+        title: '领取成功',
+        icon: 'success',
+        duration: 1500
+      }).then(() => {
+        Taro.redirectTo({ url: '/pages/index/index?get=1' })
+      })
+  }
   const onLoadHandler = e => {
     console.log(e)
   }
@@ -37,7 +47,8 @@ export default function Index () {
       <Image style='width: 36%;' src={logo} mode='widthFix'></Image>
       <View className='index-title'>会员领卡</View>
       <View className='index-tips'>领取会员卡可成为游全球会员，享受积分消费，兑换优惠券</View>
-      <Button className='index-button' openType='getPhoneNumber' onGetPhoneNumber={getPhoneNumber}>微信手机号快速申请</Button>
+      {/* <Button className='index-button' openType='getPhoneNumber' onGetPhoneNumber={getPhoneNumber}>微信手机号快速申请</Button> */}
+      <Button className='index-button' onClick={getCard}>点击快速申请</Button>
       <View style='margin-top: 3vh;'><OfficialAccount onLoad={onLoadHandler} onError={onLoadHandler} /></View>
     </View>
   )

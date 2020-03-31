@@ -23,7 +23,11 @@ export default function Share ()  {
 
   return (
     <View>
-      <WebView src={`https://shopping.kqlink.com/global-charge-wechat/user/share-poster?userkey=${Taro.getStorageSync('token') && SHA1(JWT.decode(Taro.getStorageSync('token')).openId) || 'default'}`} />
+      {
+        process.env.NODE_ENV === 'development' ?
+        <WebView src={`https://shopping.kqlink.com/global-charge-wechat/user/share-poster-mini?userkey=${Taro.getStorageSync('token') && SHA1(JWT.decode(Taro.getStorageSync('token')).openId) || 'default'}`} /> :
+        <WebView src={`https://wechat.globalcharge.cn/user/share-poster-mini?userkey=${Taro.getStorageSync('token') && SHA1(JWT.decode(Taro.getStorageSync('token')).openId) || 'default'}`} />
+      }
     </View>
   )
 }

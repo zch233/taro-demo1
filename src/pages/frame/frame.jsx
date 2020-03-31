@@ -5,7 +5,11 @@ export default function WebFrame ()  {
   const router = useRouter()
   return (
     <View>
-      <WebView src={`https://shopping.kqlink.com/global-charge-wechat/${router.params.href}`} />
+      {
+        process.env.NODE_ENV === 'development' ?
+        <WebView src={`https://shopping.kqlink.com/global-charge-wechat/${router.params.href}`} /> :
+        <WebView src={`https://wechat.globalcharge.cn/${router.params.href}`} />
+      }
     </View>
   )
 }

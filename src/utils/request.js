@@ -1,14 +1,13 @@
 import Taro from '@tarojs/taro'
 
-// const baseURL = process.env.NODE_ENV === 'development' ? 'https://dev.kqlink.com' : 'https://shopping.kqlink.com/global-charge-wechat-api'
-const baseURL = 'https://shopping.kqlink.com/global-charge-wechat-api'
+const baseURL = process.env.NODE_ENV === 'development' ? 'https://shopping.kqlink.com/global-charge-wechat-api' : 'http://wechat-api.globalcharge.cn'
 
 const error = {
   'JU403': { message: '对不起，您无权限访问该页面！', href: '403' },
   'JU404': { message: '找不到该页面啦！', href: '404' },
   'WX0005': { message: '请先关注公众号在访问哦！', href: 'leadFollow' },
   'JU302': { message: '对不起，服务器正在维护！', href: 'serveDead' },
-  'JU430': { message: '网络异常，请稍候再试！', href: 'networkError' }
+  'JU430': { message: '网络异常，请稍候再试！', href: 'networkError' },
 }
 
 export default function (url, data, method='POST') {

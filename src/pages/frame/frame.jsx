@@ -3,9 +3,11 @@ import { View, WebView  } from '@tarojs/components'
 
 export default function WebFrame ()  {
   const router = useRouter()
+  console.log(process.env)
+
   return (
     <View>
-      <WebView src={`https://${process.env.NODE_ENV === 'development' ? 'shopping.kqlink.com/global-charge-wechat' : 'wechat.globalcharge.cn'}/${router.params.href}`} />
+      <WebView src={`${WEBVIEW_URL}/${router.params.href}`} />
     </View>
   )
 }

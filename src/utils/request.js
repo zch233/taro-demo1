@@ -1,7 +1,6 @@
 import Taro from '@tarojs/taro'
 
-const baseURL = process.env.NODE_ENV === 'development' ? 'https://shopping.kqlink.com/global-charge-wechat-api' : 'http://wechat-api.globalcharge.cn'
-
+const baseURL = REQUEST_URL
 const error = {
   'JU403': { message: '对不起，您无权限访问该页面！', href: '403' },
   'JU404': { message: '找不到该页面啦！', href: '404' },
@@ -34,7 +33,7 @@ export default function (url, data, method='POST') {
             })
             .then(res1 => {
               if (res1.confirm) {
-                Taro.reLaunch({ url: '/pages/index/index?get=1' })
+                Taro.reLaunch({ url: '/pages/index/index?get=1&default=default' })
               } else if (res1.cancel) {
                 Taro.reLaunch({ url: `/pages/frame/frame?href=${error[result.code].href}` })
               }

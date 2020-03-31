@@ -1,8 +1,13 @@
 module.exports = {
   env: {
-    NODE_ENV: '"production"'
+    NODE_ENV: '"production"',
   },
-  defineConstants: {},
+  defineConstants: {
+    WEBVIEW_URL: '"https://wechat.globalcharge.cn"',
+    REQUEST_URL: '"http://wechat-api.globalcharge.cn"',
+    // WEBVIEW_URL: '"https://shopping.kqlink.com/global-charge-wechat"',
+    // REQUEST_URL: '"https://shopping.kqlink.com/global-charge-wechat-api"',
+  },
   mini: {},
   h5: {
     /**
